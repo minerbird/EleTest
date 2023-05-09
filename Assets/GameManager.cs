@@ -20,17 +20,17 @@ public class GameManager : MonoBehaviour
     
     public List<GameObject> MyCard = new List<GameObject>();
     public List<GameObject> EnCard = new List<GameObject>();
+    public List<GameObject> AllCard = new List<GameObject>();
 
     public GameObject unitManager;
     public GameObject UnitGen;
-    
 
     //gameObject.tag = "NewTag";
     void Start()
     {
         SetGame();
-        GenCard(MyCard, MyFi, 0);
-        GenCard(EnCard, EnFi, 4);
+        GenCard(MyCard, MyFi, AllCard, 0);
+        GenCard(EnCard, EnFi, AllCard, 4);
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         }
         EnFi = Yebi;
     }
-    void GenCard(List<GameObject> CardL, List<UnitData> UnitL, float ypo)
+    void GenCard(List<GameObject> CardL, List<UnitData> UnitL, List<GameObject> AllL, float ypo)
     {
         UnitGen unit = UnitGen.GetComponent<UnitGen>();
         float xpo = 0;
@@ -71,10 +71,7 @@ public class GameManager : MonoBehaviour
             xpo += 3;
 
             CardL.Add(curUnit);
+            AllCard.Add(curUnit);
         }
-    }
-    void SetCard()
-    {
-        
     }
 }

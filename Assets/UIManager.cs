@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
-    // Start is called before the first frame update
+    public Button attack;
     void Start()
     {
         
@@ -19,8 +19,21 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mouseP = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-        transform.position = Camera.main.ScreenToWorldPoint(mouseP);
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
+
+            if (hit.collider != null)
+            {
+                GameObject click_obj = hit.transform.gameObject;
+                Debug.Log(click_obj.GetComponent<UnitGen>().atkTxt.text);
+
+                Instantiate(attack, new Vector3(click_obj.transform.position.x, click_obj.transform.position.y-10, 0), Quaternion.identity);
+                
+            }
+        }
     }
        
 }
