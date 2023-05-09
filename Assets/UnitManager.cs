@@ -10,7 +10,7 @@ public class UnitData
     public Sprite image;
 
     public int maxHp;
-    int hp;
+    public int hp;
 
     public int atk;
     public int def;
