@@ -748,7 +748,6 @@ MonoBehaviour:
     atk: 20
     def: 10
     sp: 5
-    Team: 
   - name: "\uD130\uBDF8\uB7F0\uC2A4"
     image: {fileID: -1119638910, guid: 91ece539279118a438c900dfb08582ed, type: 3}
     maxHp: 80
@@ -756,7 +755,6 @@ MonoBehaviour:
     atk: 40
     def: 50
     sp: 1
-    Team: 
   - name: "\uD2B8\uB9AC\uC288\uB77C"
     image: {fileID: 1856826321, guid: 91ece539279118a438c900dfb08582ed, type: 3}
     maxHp: 50
@@ -764,7 +762,6 @@ MonoBehaviour:
     atk: 20
     def: 10
     sp: 7
-    Team: 
   - name: "\uD0B9\uC624\uC800"
     image: {fileID: -1819324105, guid: 91ece539279118a438c900dfb08582ed, type: 3}
     maxHp: 50
@@ -772,7 +769,6 @@ MonoBehaviour:
     atk: 30
     def: 20
     sp: 7
-    Team: 
   - name: "\uC2EC\uC601"
     image: {fileID: 1805895790, guid: 91ece539279118a438c900dfb08582ed, type: 3}
     maxHp: 10
@@ -780,15 +776,13 @@ MonoBehaviour:
     atk: 25
     def: 5
     sp: 10
-    Team: 
-  - name: "\uB450\uD55C\uC774"
+  - name: "\uAE40\uB450\uD55C"
     image: {fileID: 510289901, guid: 91ece539279118a438c900dfb08582ed, type: 3}
     maxHp: 30
     hp: 0
     atk: 40
     def: 10
     sp: 6
-    Team: 
 --- !u!4 &1165333006
 Transform:
   m_ObjectHideFlags: 0

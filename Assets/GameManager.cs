@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using DG.Tweening;
 
 [Serializable]
 public class GameManager : MonoBehaviour
@@ -27,8 +28,9 @@ public class GameManager : MonoBehaviour
     //gameObject.tag = "NewTag";
     void Start()
     {
-        SetPos();
-        SetCard();
+        SetGame();
+        GenCard(MyCard, MyFi, 0);
+        GenCard(EnCard, EnFi, 4);
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void SetPos()
+    void SetGame()
     {
         List<UnitData> Yebi = unitManager.GetComponent<UnitManager>().unitList;
         for (int i = 0; i < 3; i++)
@@ -48,15 +50,31 @@ public class GameManager : MonoBehaviour
         }
         EnFi = Yebi;
     }
-    void SetCard()
+    void GenCard(List<GameObject> CardL, List<UnitData> UnitL, float ypo)
     {
         UnitGen unit = UnitGen.GetComponent<UnitGen>();
-        
-        GameObject curUnit = Instantiate(unit.Card, new Vector3(0, 0, 0), Quaternion.identity);
-        UnitGen curStat = curUnit.GetComponent<UnitGen>();
-        //unit.icon = MyFi[0].image;
-        curStat.nameTxt.text = MyFi[0].name;
-        MyCard.Add(curUnit);
+        float xpo = 0;
+
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject curUnit = Instantiate(unit.Card, new Vector3(0, 0, 0), Quaternion.identity);
+            UnitGen curStat = curUnit.GetComponent<UnitGen>();
+
+            curStat.nameTxt.text = UnitL[i].name;
+            curStat.hpTxt.text = UnitL[i].hp.ToString();
+            curStat.atkTxt.text = UnitL[i].atk.ToString();
+            curStat.defTxt.text = UnitL[i].def.ToString();
+            curStat.spTxt.text = UnitL[i].sp.ToString();
+            curStat.icon.sprite = UnitL[i].image;
+
+            curUnit.transform.DOMove(new Vector3(3-xpo, -2+ypo, 0), 0.7f);
+            xpo += 3;
+
+            CardL.Add(curUnit);
+        }
+    }
+    void SetCard()
+    {
         
     }
 }

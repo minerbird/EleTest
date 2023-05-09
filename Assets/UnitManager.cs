@@ -16,8 +16,6 @@ public class UnitData
     public int def;
     public int sp;
 
-    public string Team;
-
     //public int lv;
     //public int maxXp;
     //int xp;
