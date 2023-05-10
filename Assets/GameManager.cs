@@ -66,6 +66,9 @@ public class GameManager : MonoBehaviour
             curStat.defTxt.text = UnitL[i].def.ToString();
             curStat.spTxt.text = UnitL[i].sp.ToString();
             curStat.icon.sprite = UnitL[i].image;
+            curStat.taging = UnitL[i].tag;
+            curStat.plaver = UnitL[i].plaver;
+            curStat.num = UnitL[i].num;
 
             curUnit.transform.DOMove(new Vector3(3-xpo, -2+ypo, 0), 0.7f);
             xpo += 3;

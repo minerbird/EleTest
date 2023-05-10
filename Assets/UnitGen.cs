@@ -12,6 +12,9 @@ public class UnitGen : MonoBehaviour
     public TMP_Text atkTxt;
     public TMP_Text defTxt;
     public TMP_Text spTxt;
+    public string taging;
+    public string plaver;
+    public int num;
 
     void Start()
     {

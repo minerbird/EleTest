@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
-{ 
+{
+    public static BattleManager instance;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         
@@ -16,14 +21,26 @@ public class BattleManager : MonoBehaviour
         //Damage(GameManager.instance.)
     }
 
-    /*int Damage(int atk, int def)
+   public void Attack(GameObject you, GameObject target)
     {
-        int damage=atk
-        //return 
-    }*/
-    void SpSort()
+        int atk = int.Parse(you.GetComponent<UnitGen>().atkTxt.text);
+        int def = int.Parse(target.GetComponent<UnitGen>().defTxt.text);
+        float damage = atk - (def / 2);
+
+        if (damage <= 0)
+            damage = 1;
+
+
+        Debug.Log(damage);
+        Debug.Log(you);
+        int curHp = int.Parse(target.GetComponent<UnitGen>().hpTxt.text) - (int)damage;
+
+        target.GetComponent<UnitGen>().hpTxt.text = curHp.ToString();
+
+    }
+    void Dead(GameObject obj)
     {
-        
+        Destroy(obj);
     }
 
 }

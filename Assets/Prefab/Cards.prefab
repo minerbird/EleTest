@@ -299,8 +299,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 2.5
-  m_fontSizeBase: 2.5
+  m_fontSize: 2
+  m_fontSizeBase: 2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -460,6 +460,8 @@ MonoBehaviour:
   atkTxt: {fileID: 2499652456408768496}
   defTxt: {fileID: 5094266268753253541}
   spTxt: {fileID: 2999204618998646593}
+  taging: 
+  plaver: 
 --- !u!61 &5752852379106973121
 BoxCollider2D:
   m_ObjectHideFlags: 0

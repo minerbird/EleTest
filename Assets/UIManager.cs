@@ -5,21 +5,18 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public Button attack;
+    public Button attack1;
+    public Button attack2;
+    public Button attack3;
     void Start()
     {
-        
+        StartCoroutine("setup");
+        //GameManager.instance.MyCard[0].GetComponent<UnitGen>().num;
     }
 
-    private void OnMouseEnter()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -33,7 +30,15 @@ public class UIManager : MonoBehaviour
                 Instantiate(attack, new Vector3(click_obj.transform.position.x, click_obj.transform.position.y-10, 0), Quaternion.identity);
                 
             }
-        }
+        }*/
     }
-       
+
+    IEnumerator setup()
+    {
+        Debug.Log("fgb");
+        yield return new WaitForSeconds(3f);
+        Debug.Log("qwer");
+        attack1.onClick.AddListener(delegate
+                           { UnitManager.instance.skills(GameManager.instance.MyCard[0].GetComponent<UnitGen>().num);  });
+    }
 }
