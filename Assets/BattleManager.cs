@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BattleManager : MonoBehaviour
 {
@@ -18,7 +19,12 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Damage(GameManager.instance.)
+        var query = from item in GameManager.instance.AllCard
+                    where int.Parse(item.GetComponent<UnitGen>().hpTxt.text) == 0
+                    select item;
+        List<GameObject> Deader = query.ToList();
+
+        Dead(Deader);
     }
 
    public void Attack(GameObject you, GameObject target)
@@ -32,15 +38,26 @@ public class BattleManager : MonoBehaviour
 
 
         Debug.Log(damage);
-        Debug.Log(you);
+        Debug.Log(you.GetComponent<UnitGen>().nameTxt.text);
         int curHp = int.Parse(target.GetComponent<UnitGen>().hpTxt.text) - (int)damage;
+        if (curHp < 0)
+        {
+            curHp = 0;
+        }
 
         target.GetComponent<UnitGen>().hpTxt.text = curHp.ToString();
 
     }
-    void Dead(GameObject obj)
+    void Dead(List<GameObject> deader)
     {
-        Destroy(obj);
+        for (int i = 0; i < deader.Count; i++)
+        {
+            GameManager.instance.AllCard.Remove(deader[i]);
+            if (GameManager.instance.MyCard.Contains(deader[i]))
+                GameManager.instance.MyCard.Remove(deader[i]);
+            else
+                GameManager.instance.EnCard.Remove(deader[i]);
+            Destroy(deader[i]);
+        }
     }
-
 }

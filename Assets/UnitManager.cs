@@ -38,6 +38,10 @@ public class UnitManager : MonoBehaviour
     public Button attck2;
     public Button attck3;
 
+    public Text t1;
+    public Text t2;
+    public Text t3;
+
     void Start()
     {
         ButtonSet();
@@ -50,9 +54,15 @@ public class UnitManager : MonoBehaviour
 
     void ButtonSet()
     {
+
         attck1.onClick.AddListener(() => skills(GameManager.instance.MyCard[2].GetComponent<UnitGen>().num));
+        //t1.text = GameManager.instance.MyCard[2].GetComponent<UnitGen>().plaver;
+        
         attck2.onClick.AddListener(() => skills(GameManager.instance.MyCard[1].GetComponent<UnitGen>().num));
+        //t2.text = GameManager.instance.MyCard[1].GetComponent<UnitGen>().plaver;
+        
         attck3.onClick.AddListener(() => skills(GameManager.instance.MyCard[0].GetComponent<UnitGen>().num));
+        //t3.text = GameManager.instance.MyCard[0].GetComponent<UnitGen>().plaver;
     }
 
     public void skills(int num)
@@ -319,10 +329,5 @@ public class UnitManager : MonoBehaviour
 
         BattleManager.instance.Attack(you, target);
 
-    }
-
-    void juSer(string tag, GameObject you, List<GameObject> ju)
-    {
-        
     }
 }
