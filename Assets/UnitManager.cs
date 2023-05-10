@@ -38,9 +38,12 @@ public class UnitManager : MonoBehaviour
     public Button attck2;
     public Button attck3;
 
-    public Text t1;
-    public Text t2;
-    public Text t3;
+    //public Text t1;
+    //public Text t2;
+    //public Text t3;
+
+    public GameObject Ai;
+    //public GameObject 
 
     void Start()
     {

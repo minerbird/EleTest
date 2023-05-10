@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
 
 public class BattleManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class BattleManager : MonoBehaviour
     {
         instance = this;
     }
+    //public GameObject ai;
+
     void Start()
     {
         
@@ -59,5 +62,12 @@ public class BattleManager : MonoBehaviour
                 GameManager.instance.EnCard.Remove(deader[i]);
             Destroy(deader[i]);
         }
+
+        /*IEnumerator AttackAni(GameObject you, GameObject target)
+        {
+            you.transform.DOMove(target.transform.position, 1);
+            yield return new WaitForSeconds(1);
+            you.transform.DOMove(new Vector3(3 - xpo, -2 + ypo, 0), 1.5f);
+        }*/
     }
 }
