@@ -86,7 +86,9 @@ public class BattleManager : MonoBehaviour
     IEnumerator Effects(int damage)
     {
         TMP_Text damTxt = Instantiate(eff, new Vector3(0, 0, 0), Quaternion.identity);
+        yield return new WaitForSeconds(0.1f);
         eff.text = (-1*damage).ToString();
+        Debug.Log("E"+eff.text);
         //eff.GetComponent<TextMeshPro>().color.gamma
         yield return new WaitForSeconds(0.5f);
         Destroy(damTxt.gameObject);
