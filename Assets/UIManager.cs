@@ -20,4 +20,9 @@ public class UIManager : MonoBehaviour
         else if (GameManager.instance.EnCard.Count == 0)
             gameClear.SetActive(true);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
