@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using DG.Tweening;
+using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
@@ -14,9 +15,11 @@ public class BattleManager : MonoBehaviour
     }
     //public GameObject ai;
 
+    public TMP_Text eff;
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -26,7 +29,6 @@ public class BattleManager : MonoBehaviour
                     where int.Parse(item.GetComponent<UnitGen>().hpTxt.text) == 0
                     select item;
         List<GameObject> Deader = query.ToList();
-
         Dead(Deader);
     }
 
@@ -34,7 +36,7 @@ public class BattleManager : MonoBehaviour
     {
         int atk = int.Parse(you.GetComponent<UnitGen>().atkTxt.text);
         int def = int.Parse(target.GetComponent<UnitGen>().defTxt.text);
-        float damage = atk - (def / 2);
+        int damage = atk - (def / 2);
 
         if (damage <= 0)
             damage = 1;
@@ -42,14 +44,14 @@ public class BattleManager : MonoBehaviour
 
         Debug.Log(damage);
         Debug.Log(you.GetComponent<UnitGen>().nameTxt.text);
-        int curHp = int.Parse(target.GetComponent<UnitGen>().hpTxt.text) - (int)damage;
+        int curHp = int.Parse(target.GetComponent<UnitGen>().hpTxt.text) - damage;
         if (curHp < 0)
         {
             curHp = 0;
         }
 
         target.GetComponent<UnitGen>().hpTxt.text = curHp.ToString();
-
+        StartCoroutine(Effects(damage));
     }
     void Dead(List<GameObject> deader)
     {
@@ -69,5 +71,23 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             you.transform.DOMove(new Vector3(3 - xpo, -2 + ypo, 0), 1.5f);
         }*/
+    }
+
+    //List<int> curHp = new List<int>();
+    /*void setE()
+    {
+        for (int i = 0; i < GameManager.instance.AllCard.Count; i++)
+        {
+            curHp[i] = int.Parse(GameManager.instance.AllCard[i].GetComponent<UnitGen>().hpTxt.text);
+        }
+    }*/
+
+
+    IEnumerator Effects(int damage)
+    {
+        TMP_Text damTxt = Instantiate(eff, new Vector3(0, 0, 0), Quaternion.identity);
+        eff.text = (-1*damage).ToString();
+        yield return new WaitForSeconds(0.5f);
+        Destroy(damTxt.gameObject);
     }
 }

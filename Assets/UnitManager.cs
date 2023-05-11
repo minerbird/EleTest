@@ -42,7 +42,6 @@ public class UnitManager : MonoBehaviour
     //public Text t2;
     //public Text t3;
 
-    public GameObject Ai;
     //public GameObject 
 
     void Start()
@@ -59,7 +58,7 @@ public class UnitManager : MonoBehaviour
     {
 
         attck1.onClick.AddListener(() => skills(GameManager.instance.MyCard[2].GetComponent<UnitGen>().num));
-        //t1.text = GameManager.instance.MyCard[2].GetComponent<UnitGen>().plaver;
+        //t1.text = GameManager.instance.MyCard[2].GetComponent<UnitGen>().nameTxt.text;
         
         attck2.onClick.AddListener(() => skills(GameManager.instance.MyCard[1].GetComponent<UnitGen>().num));
         //t2.text = GameManager.instance.MyCard[1].GetComponent<UnitGen>().plaver;
@@ -236,13 +235,38 @@ public class UnitManager : MonoBehaviour
     }
     public void flower(List<GameObject> ju, List<GameObject> ene)
     {
-        // 모든 적을 공격
+        // 공격력이 가장 낮은 적을 공격
 
         Debug.Log("fl");
-        List<GameObject> DaL = ene;
+        int l_atk = int.Parse(ene[0].GetComponent<UnitGen>().atkTxt.text);
+        int d_atk;
+        for (int i = 0; i < ene.Count; i++)
+        {
+            d_atk = int.Parse(ene[i].GetComponent<UnitGen>().atkTxt.text);
+            if (l_atk > d_atk)
+            {
+                l_atk = d_atk;
+            }
+
+        }
+
+        var query = from item in ene
+                    where int.Parse(item.GetComponent<UnitGen>().atkTxt.text) == l_atk
+                    select item;
+
+        List<GameObject> DaL = query.ToList();
+        //Debug.Log(DaL.Count);
 
         GameObject target;
         GameObject you = null;
+
+        if (DaL.Count >= 2)
+        {
+            int ran = UnityEngine.Random.Range(0, DaL.Count);
+            target = DaL[ran];
+        }
+        else
+            target = DaL[0];
 
         for (int i = 0; i < ju.Count; i++)
         {
@@ -252,11 +276,7 @@ public class UnitManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < DaL.Count; i++)
-        {
-            target = DaL[i];
-            BattleManager.instance.Attack(you, target);
-        }
+        BattleManager.instance.Attack(you, target);
     }
     public void stone(List<GameObject> ju, List<GameObject> ene)
     {
