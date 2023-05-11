@@ -87,6 +87,7 @@ public class BattleManager : MonoBehaviour
     {
         TMP_Text damTxt = Instantiate(eff, new Vector3(0, 0, 0), Quaternion.identity);
         eff.text = (-1*damage).ToString();
+        //eff.GetComponent<TextMeshPro>().color.gamma
         yield return new WaitForSeconds(0.5f);
         Destroy(damTxt.gameObject);
     }
